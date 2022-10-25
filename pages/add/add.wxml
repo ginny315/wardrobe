@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="pannel-item" bind:tap="onClickPicker" data-key="{season}}">
+      <view class="pannel-label">季节</view>
+      <view class="pannel-text {{seasonsValue.length ? '' : 'empty'}}">
+        {{seasonsCurrentValue || '选择季节' }}</view
+      >
+      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+      <view class="btn-area">
+        <t-button-group>
+          <t-button t-class="external-class no-border-radius no-border" size="small" formType="reset"
+            >Reset</t-button
+          >
+          <t-button t-class="external-class no-border-radius" theme="primary" size="small" formType="submit"
+            >Submit</t-button
+          >
+        </t-button-group>
+      </view>
+    </form>
+
+      <t-picker
+        visible="{{seasonsVisible}}"
+        value="{{seasonsValue}}"
+        data-key="season"
+        title="{{pickerTitle}}"
+        cancelBtn="取消"
+        confirmBtn="确认"
+        bindchange="onPickerChange"
+        bindpick="onColumnChange"
+        bindcancel="onPickerCancel"
+      >
+        <t-picker-item options="{{seasonsList}}"></t-picker-item>
+      </t-picker>
+  </view>
+</view>
