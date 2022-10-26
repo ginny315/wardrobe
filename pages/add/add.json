@@ -5,6 +5,9 @@
     "t-picker": "tdesign-miniprogram/picker/picker",
     "t-picker-item": "tdesign-miniprogram/picker/picker-item",
     "t-button": "tdesign-miniprogram/button/button",
-    "t-button-group": "tdesign-miniprogram/button-group/button-group"
+    "t-button-group": "tdesign-miniprogram/button-group/button-group",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-upload": "tdesign-miniprogram/upload/upload"
   }
 }

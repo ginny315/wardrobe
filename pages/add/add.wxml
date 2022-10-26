@@ -1,19 +1,56 @@
 <view class="container">
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
-      <view class="pannel-item" bind:tap="onClickPicker" data-key="{season}}">
-      <view class="pannel-label">季节</view>
-      <view class="pannel-text {{seasonsValue.length ? '' : 'empty'}}">
-        {{seasonsCurrentValue || '选择季节' }}</view
-      >
-      <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      <view class="pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.SEASON}}">
+        <view class="pannel-label">季节</view>
+        <view class="pannel-text {{form.season.length > 0 ? '' : 'empty'}}">
+          {{form.season[0] || '选择季节' }}</view
+        >
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
       </view>
-      <view class="btn-area">
-        <t-button-group>
-          <t-button t-class="external-class no-border-radius no-border" size="small" formType="reset"
-            >Reset</t-button
+      <view class="pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.TYPE}}">
+        <view class="pannel-label">类型</view>
+        <view class="pannel-text {{form.type.length > 0 ? '' : 'empty'}}">
+          {{form.type[0] || '选择季节' }}</view
+        >
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+      <view class="pannel-item" bind:tap="onClickPicker" data-key="{{PICKER_KEY.POSITION}}">
+        <view class="pannel-label">位置</view>
+        <view class="pannel-text {{form.position.length > 0 ? '' : 'empty'}}">
+          {{form.position[0] || '选择位置' }}</view
+        >
+        <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+      </view>
+      <view class="pannel-item-img">
+        <view class="pannel-label">图片</view>
+        <view class="pannel-img">
+          <t-upload
+            addContent="slot"
+            mediaType="{{['video','image']}}"
+            files="{{form.pic[0]}}"
+            gridConfig="{{gridConfig}}"
+            config="{{config}}"
+            max= "1"
+            bind:success="handleSuccess"
+            bind:remove="handleRemove"
           >
-          <t-button t-class="external-class no-border-radius" theme="primary" size="small" formType="submit"
+            <t-icon slot="add-content" name="add" size="40rpx" color="rgba(0,0,0,0.26)" />
+          </t-upload>
+        </view>
+      </view>
+      <view class="pannel-item">
+        <view class="pannel-label">备注</view>
+        <view class="pannel-text">
+          <t-input value="{{form.other}}" placeholder="输入备注" />
+        </view>
+      </view>
+      <view class="btn">
+        <t-button-group>
+          <t-button t-class="" size="small" formType="reset"
+            bindtap="formReset">Reset</t-button
+          >
+          <t-button t-class="" theme="primary" size="small" formType="submit" bindtap="formSubmit"
             >Submit</t-button
           >
         </t-button-group>
@@ -21,17 +58,42 @@
     </form>
 
       <t-picker
-        visible="{{seasonsVisible}}"
-        value="{{seasonsValue}}"
+        visible="{{seasonVisible}}"
+        value="{{form.season}}"
         data-key="season"
         title="{{pickerTitle}}"
         cancelBtn="取消"
         confirmBtn="确认"
         bindchange="onPickerChange"
-        bindpick="onColumnChange"
         bindcancel="onPickerCancel"
       >
-        <t-picker-item options="{{seasonsList}}"></t-picker-item>
+        <t-picker-item options="{{seasonList}}"></t-picker-item>
+      </t-picker>
+
+      <t-picker
+        visible="{{typeVisible}}"
+        value="{{form.type}}"
+        data-key="type"
+        title="{{pickerTitle}}"
+        cancelBtn="取消"
+        confirmBtn="确认"
+        bindchange="onPickerChange"
+        bindcancel="onPickerCancel"
+      >
+        <t-picker-item options="{{typeList}}"></t-picker-item>
+      </t-picker>
+
+      <t-picker
+        visible="{{positionVisible}}"
+        value="{{form.position}}"
+        data-key="position"
+        title="{{pickerTitle}}"
+        cancelBtn="取消"
+        confirmBtn="确认"
+        bindchange="onPickerChange"
+        bindcancel="onPickerCancel"
+      >
+        <t-picker-item options="{{positionList}}"></t-picker-item>
       </t-picker>
   </view>
 </view>
