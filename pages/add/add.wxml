@@ -24,7 +24,7 @@
       </view>
       <view class="pannel-item-img">
         <view class="pannel-label">图片</view>
-        <view class="pannel-img">
+        <view class="pannel-text pannel-img">
           <t-upload
             addContent="slot"
             mediaType="{{['video','image']}}"
@@ -45,15 +45,13 @@
           <t-input value="{{form.other}}" placeholder="输入备注" />
         </view>
       </view>
-      <view class="btn">
-        <t-button-group>
+      <view class="btn-group">
           <t-button t-class="" size="small" formType="reset"
             bindtap="formReset">Reset</t-button
           >
           <t-button t-class="" theme="primary" size="small" formType="submit" bindtap="formSubmit"
             >Submit</t-button
           >
-        </t-button-group>
       </view>
     </form>
 

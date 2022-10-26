@@ -95,17 +95,17 @@ Page({
     formSubmit(e) {
       console.log('form发生了submit事件，携带数据为：', e)
       console.log('form:', this.data.form)
-      // wx.request({
-      //   url: 'http://127.0.0.1:7001/login/',
-      //   data: e.detail.value,
-      //   header: {
-      //     'content-type': 'application/json' 
-      //   },
-      //   method: 'post',
-      //   success (res) {
-      //     console.log(res.data)
-      //   }
-      // })
+      wx.request({
+        url: 'http://127.0.0.1:7001/addcloth/',
+        data: e.detail.value,
+        header: {
+          'content-type': 'application/json' 
+        },
+        method: 'post',
+        success (res) {
+          console.log(res.data)
+        }
+      })
     },
     formReset(e) {
       console.log('form发生了reset事件，携带数据为：', e.detail.value)

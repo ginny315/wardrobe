@@ -39,3 +39,8 @@
   background-color: #fff;
   overflow: hidden;
 }
+.btn-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 40rpx;
+}
