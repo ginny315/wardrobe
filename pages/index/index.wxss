@@ -1,19 +1,13 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
+.pannel-body {
+  font-size: 32rpx;
 }
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.item-label {
+  font-size: 32rpx;
+  color: #000;
 }
-
-.usermotto {
-  margin-top: 20px;
+.item-tag {
+  margin-right: 20rpx;
+}
+.to-add {
+  padding: 20rpx;
 }

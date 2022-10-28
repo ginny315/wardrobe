@@ -77,12 +77,29 @@ Page({
     },
     handleSuccess(e) {
       const { files } = e.detail;
-      const { form } = this.data;
-      form.pic.push(files)
-      this.setData({
-        form
-      });
-      console.log('img form=',form)
+      console.log(e.detail)
+      wx.uploadFile({
+        url: 'http://10.10.48.119:7001/upload/',
+        filePath: files[0].url,
+        name: 'file',
+        formData: {
+          'user': 'ginny'
+        },
+        header: {
+          "content-type": "multipart/form-data"
+        },
+        success (res){
+          const { data } = res
+          console.log('upload res=', data)
+        },
+        fail:function(err){console.log(err);}
+      })
+      // const { form } = this.data;
+      // form.pic = files;
+      // this.setData({
+      //   form
+      // });
+      // console.log('img form=',form)
     },
     handleRemove(e) {
       const { index } = e.detail;
@@ -92,18 +109,29 @@ Page({
         form
       });
     },
+    handleInput(e) {
+      this.setData({
+        [`form.other`]: e.detail.value,
+      });
+    },
     formSubmit(e) {
       console.log('form发生了submit事件，携带数据为：', e)
       console.log('form:', this.data.form)
       wx.request({
-        url: 'http://127.0.0.1:7001/addcloth/',
-        data: e.detail.value,
+        url: 'http://10.10.48.119:7001/add/',
+        data: this.data.form,
         header: {
           'content-type': 'application/json' 
         },
         method: 'post',
         success (res) {
           console.log(res.data)
+          const { code } = res.data;
+          if(code == 0) {
+            wx.navigateTo({
+              url: '../index/index'
+            })
+          }
         }
       })
     },

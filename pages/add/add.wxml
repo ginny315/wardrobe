@@ -28,7 +28,7 @@
           <t-upload
             addContent="slot"
             mediaType="{{['video','image']}}"
-            files="{{form.pic[0]}}"
+            files="{{form.pic}}"
             gridConfig="{{gridConfig}}"
             config="{{config}}"
             max= "1"
@@ -42,7 +42,8 @@
       <view class="pannel-item">
         <view class="pannel-label">备注</view>
         <view class="pannel-text">
-          <t-input value="{{form.other}}" placeholder="输入备注" />
+          <t-input value="{{form.other}}" placeholder="输入备注" 
+          bind:change="handleInput"/>
         </view>
       </view>
       <view class="btn-group">
