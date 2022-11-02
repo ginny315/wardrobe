@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "tdesign-miniprogram": "^0.21.2"
+    "tdesign-miniprogram": "^0.21.2",
+    "wx-server-sdk": "^2.6.3"
   }
 }

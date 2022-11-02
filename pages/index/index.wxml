@@ -1,5 +1,6 @@
 <view class="container">
   <view class="pannel-body">
+    <t-message id="t-message" />
     <view class="to-add">
       <t-button theme="primary" size="small" icon="app" shape="square" bindtap="toAdd"></t-button>
     </view>
@@ -7,7 +8,8 @@
       <t-tag class="item-tag" theme="primary">{{item.season}}</t-tag>
       <t-tag class="item-tag" theme="success">{{item.type}}</t-tag>
       <t-tag class="item-tag" theme="warning">{{item.position}}</t-tag>
-      <t-image t-class="item-img" src="{{item.imgurl}}" mode="aspectFill" shape="square"></t-image>
+      <t-icon name="close-circle" size="48rpx" class="item-del" data-id="{{item.id}}" bindtap="handleDel" />
+      <t-image class="item-img" src="{{item.imgurl}}" mode="aspectFill" shape="square"></t-image>
     </view>
   </view>
 </view>

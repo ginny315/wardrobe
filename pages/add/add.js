@@ -10,6 +10,7 @@ const emyptForm = {
   pic: [],
   position: [],
   other: null,
+  imgurl: null,
 }
 
 Page({
@@ -76,30 +77,38 @@ Page({
       });
     },
     handleSuccess(e) {
+      const that = this;
       const { files } = e.detail;
-      console.log(e.detail)
-      wx.uploadFile({
-        url: 'http://10.10.48.119:7001/upload/',
-        filePath: files[0].url,
-        name: 'file',
-        formData: {
-          'user': 'ginny'
+      console.log(files)
+      const reqFile = files[0].url;
+      wx.cloud.uploadFile({
+        cloudPath: 'test/'+files[0].name, // 文件夹例子 test/文件名
+        filePath: reqFile,
+        config: {
+          env: 'prod-9g32jz3109670496' // 微信云托管环境ID
         },
-        header: {
-          "content-type": "multipart/form-data"
+        success: res => {
+          console.log(res)
+          that.setData({
+            [`form.imgurl`]: res.fileID,
+            [`form.pic`]: files
+          });
         },
-        success (res){
-          const { data } = res
-          console.log('upload res=', data)
-        },
-        fail:function(err){console.log(err);}
+        fail: err => {
+          console.error(err)
+        }
       })
-      // const { form } = this.data;
-      // form.pic = files;
-      // this.setData({
-      //   form
+      // wx.request({
+      //   url: 'http://localhost:90/api/upload',
+      //   data: files,
+      //   method: 'post',
+      //   header: {
+      //     'content-type': 'application/json' 
+      //   },
+      //   success (res) {
+      //     console.log(res.data)
+      //   }
       // });
-      // console.log('img form=',form)
     },
     handleRemove(e) {
       const { index } = e.detail;
@@ -118,7 +127,7 @@ Page({
       console.log('form发生了submit事件，携带数据为：', e)
       console.log('form:', this.data.form)
       wx.request({
-        url: 'http://10.10.48.119:7001/add/',
+        url: 'http://10.10.48.119:90/api/add_clothes',
         data: this.data.form,
         header: {
           'content-type': 'application/json' 

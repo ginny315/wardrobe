@@ -1,3 +1,4 @@
+import Message from 'tdesign-miniprogram/message/index';
 Page({
   data: {
     clothesList: [
@@ -19,15 +20,14 @@ Page({
       // }
     ]
   },
-  getList() {
-
-  },
   onLoad() {
-    let that = this;
-    console.log('load data')
+    console.log('load data');
+    this.getClothesList();
+  },
+  getClothesList () {
+    const that = this;
     wx.request({
-      url: 'http://10.10.48.119:7001/list/',
-      data: this.data.form,
+      url: 'http://10.10.48.119:90/api/get_clothes',
       header: {
         'content-type': 'application/json' 
       },
@@ -48,4 +48,29 @@ Page({
       url: '../add/add'
     })
   },
+  handleDel(e) {
+    const that = this;
+    const id = e.target.dataset.id;
+    console.log('del=',id)
+    wx.request({
+      url: 'http://10.10.48.119:90/api/del_clothes/'+id,
+      method: 'delete',
+      success (res) {
+        console.log(res.data)
+        const { code } = res.data;
+        if(code == 0) {
+          that.getClothesList();
+          Message.info({
+            context: that,
+            offset: [20, 32],
+            duration: 5000,
+            icon: false,
+            content: '衣服已经丢弃～～',
+          });
+        }else {
+          console.log('del error')
+        }
+      }
+    })
+  }
 })

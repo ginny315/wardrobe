@@ -45,11 +45,11 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
-  "appid": "wxfa4b57499955dff6",
+  "appid": "wx4beff3159b4a945f",
   "projectname": "card",
   "condition": {},
   "editorSetting": {

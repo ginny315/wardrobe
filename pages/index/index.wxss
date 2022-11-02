@@ -8,6 +8,10 @@
 .item-tag {
   margin-right: 20rpx;
 }
+.item-del {
+  display: inline-flex;
+  vertical-align: bottom;
+}
 .to-add {
   padding: 20rpx;
 }
